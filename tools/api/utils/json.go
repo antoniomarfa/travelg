@@ -87,6 +87,37 @@ type Duration struct {
 	time.Duration
 }
 
+func ViewJSON(input string, target interface{}) error {
+	// Verificar si el input es una cadena JSON válida o una ruta a un archivo
+	if _, err := os.Stat(input); err == nil {
+		// Si el input es un archivo (la ruta existe)
+		file, err := os.Open(input)
+		if err != nil {
+			return fmt.Errorf("error opening file %v: %w", input, err)
+		}
+		defer file.Close()
+
+		byteValue, err := io.ReadAll(file)
+		if err != nil {
+			return fmt.Errorf("error reading file %v: %w", input, err)
+		}
+
+		// Deserializar el contenido JSON del archivo
+		err = json.Unmarshal(byteValue, target)
+		if err != nil {
+			return fmt.Errorf("error unmarshaling file %v: %w", input, err)
+		}
+	} else {
+		// Si no es una ruta de archivo válida, asumir que es una cadena JSON
+		err := json.Unmarshal([]byte(input), target)
+		if err != nil {
+			return fmt.Errorf("error unmarshaling JSON string: %w", err)
+		}
+	}
+
+	return nil
+}
+
 func (d *Duration) UnmarshalJSON(b []byte) (err error) {
 	var v interface{}
 	json.Unmarshal(b, &v)

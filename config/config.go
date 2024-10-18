@@ -2,7 +2,6 @@ package config
 
 import (
 	"fmt"
-	"path"
 
 	"travel/tools/api/utils"
 )
@@ -54,13 +53,38 @@ func ReadConfig(version, env string, port int, database, dsn, flowApikey, flowse
 	// Asignar manualmente los valores a los campos del struct 'config'
 
 	var cfg config
-	configPath := "./config"
+	/*
+		configPath := "./config"
 
-	if err := utils.LoadJSON(path.Join(configPath, "config.json"), &cfg); err != nil {
+		if err := utils.LoadJSON(path.Join(configPath, "config.json"), &cfg); err != nil {
+			return c, fmt.Errorf("error parsing configuration, %s", err)
+		}
+
+		if err := utils.LoadJSON(path.Join(configPath, "config.local.json"), &cfg); err != nil {
+			//		if err := utils.LoadJSON(path.Join(configPath, "config."+env+".json"), &cfg); err != nil {
+			return c, fmt.Errorf("error parsing environment configuration, %s", err)
+		}
+	*/
+	configJson := `{
+		"Address": "http://localhost",
+		"PostgresMigrationsDir": "infrastructure/postgres/migrations",
+		"JWTSecret": "CTeemck6Gg",
+		"Timeout": "5s",
+		"Async": {
+			"Run": true,
+			"Interval": "2m"
+		}
+	}`
+
+	configlocaljson := `{
+    "Timeout": "2m"
+    }`
+
+	if err := utils.ViewJSON(configJson, &cfg); err != nil {
 		return c, fmt.Errorf("error parsing configuration, %s", err)
 	}
 
-	if err := utils.LoadJSON(path.Join(configPath, "config.local.json"), &cfg); err != nil {
+	if err := utils.ViewJSON(configlocaljson, &cfg); err != nil {
 		//		if err := utils.LoadJSON(path.Join(configPath, "config."+env+".json"), &cfg); err != nil {
 		return c, fmt.Errorf("error parsing environment configuration, %s", err)
 	}
