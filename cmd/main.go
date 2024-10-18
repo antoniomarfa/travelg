@@ -54,17 +54,7 @@ func main() {
 	opts.FlowSecretkey = os.Getenv("FLOW_SECRETKEY")
 	opts.FlowApiurl = os.Getenv("FLOW_APIURL")
 	opts.FLoWBaseurl = os.Getenv("FLOW_BASEURL")
-	/*
-		opts.Version = "1.0"
-		opts.Environment = "dev"
-		opts.Port = 8080
-		opts.Database = "postgres"
-		opts.DSN = "host=ddpg-cruktnggph6c73akddl0-a.oregon-postgres.render.com user=amartinez password=25G0wtvk8ogwM2NTZLgAgHXup9opI831 dbname=travel_erp port=5432 sslmode=require TimeZone=America/Santiago search_path=travel"
-		opts.FlowApikey = "71FF6DFF-8E7B-45D6-90AF-329LB593BBC8"
-		opts.FlowSecretkey = "3bfa04d8a5e6242386e8a9dc676f7bbb9df72f35"
-		opts.FlowApiurl = "https://sandbox.flow.cl/api"
-		opts.FLoWBaseurl = "https://sandbox.flow.cl/api"
-	*/
+
 	cfg, err := config.ReadConfig(opts.Version, opts.Environment, opts.Port, opts.Database, opts.DSN, opts.FlowApikey, opts.FlowSecretkey, opts.FlowApiurl, opts.FLoWBaseurl) // , "config")
 	if err != nil {
 		log.Fatal(fmt.Errorf("no se puede analizar el archivo de configuración ENV %s: %w", opts.Environment, err))

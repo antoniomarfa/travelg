@@ -72,7 +72,7 @@ func (s *permissionRepository) Get(ctx context.Context, filter map[string]interf
 	}
 
 	// Ejecuta la consulta
-	if err := query.Table("roles_permissions").Find(&registro).Error; err != nil {
+	if err := query.Preload("Role").Table("roles_permissions").Find(&registro).Error; err != nil {
 		return nil, err
 	}
 
