@@ -20,7 +20,7 @@ func SetCursoRoutes(ctx context.Context, cfg config.Config, r *gin.Engine, p por
 	//	r.Use(middlewares.Recover())
 
 	r.POST("/v2.0/curso", createCurso(ctx, cfg, p))
-	r.GET("/v2.0/curso/:id", getAllCurso(ctx, cfg, p))
+	r.GET("/v2.0/curso", getAllCurso(ctx, cfg, p))
 	r.GET("/v2.0/curso/:id", getCursoByID(ctx, cfg, p))
 	r.PATCH("/v2.0/curso/:id", updateCurso(ctx, cfg, p))
 	r.DELETE("/v2.0/curso/:id", deleteCurso(ctx, cfg, p))
