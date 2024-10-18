@@ -70,7 +70,7 @@ func main() {
 	opts.FlowApiurl = "https://sandbox.flow.cl/api"
 	opts.FLoWBaseurl = "https://sandbox.flow.cl/api"
 
-	cfg, err := config.ReadConfig(opts.Version, opts.Environment, opts.Port, opts.Database, opts.DSN, opts.FlowApikey, opts.FlowSecretkey, opts.FlowApiurl, opts.FLoWBaseurl, "config")
+	cfg, err := config.ReadConfig(opts.Version, opts.Environment, opts.Port, opts.Database, opts.DSN, opts.FlowApikey, opts.FlowSecretkey, opts.FlowApiurl, opts.FLoWBaseurl) // , "config")
 	if err != nil {
 		log.Fatal(fmt.Errorf("no se puede analizar el archivo de configuración ENV %s: %w", opts.Environment, err))
 	}

@@ -38,7 +38,7 @@ type config struct {
 // ReadConfig from the project´s JSON config files.
 // Default values are specified in the default configuration file, config/config.json
 // and can be overrided with values specified in the environment configuration files, config/config.{env}.json.
-func ReadConfig(version, env string, port int, database, dsn, flowApikey, flowsecretkey, flowApiurl, flowBaseurl, configPath string) (Config, error) {
+func ReadConfig(version, env string, port int, database, dsn, flowApikey, flowsecretkey, flowApiurl, flowBaseurl string) (Config, error) {
 	var c Config
 	c.Version = version
 	c.Environment = env
@@ -54,6 +54,7 @@ func ReadConfig(version, env string, port int, database, dsn, flowApikey, flowse
 	// Asignar manualmente los valores a los campos del struct 'config'
 
 	var cfg config
+	configPath := "./config"
 
 	if err := utils.LoadJSON(path.Join(configPath, "config.json"), &cfg); err != nil {
 		return c, fmt.Errorf("error parsing configuration, %s", err)
