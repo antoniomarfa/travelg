@@ -125,7 +125,7 @@ func New(ctx context.Context, cfg config.Config) (a api) {
 func (a *api) Run(ctx context.Context, cancel context.CancelFunc) func() error {
 	return func() error {
 		defer cancel()
-
+		gin.SetMode(gin.ReleaseMode)
 		router := gin.Default()
 
 		handlers.SetHealthRoutes(ctx, a.config, router)

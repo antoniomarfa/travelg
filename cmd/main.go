@@ -61,7 +61,7 @@ func main() {
 		}
 	*/
 	opts.Version = "1.0"
-	opts.Environment = "local"
+	opts.Environment = "dev"
 	opts.Port = 8080
 	opts.Database = "postgres"
 	opts.DSN = "host=ddpg-cruktnggph6c73akddl0-a.oregon-postgres.render.com user=amartinez password=25G0wtvk8ogwM2NTZLgAgHXup9opI831 dbname=travel_erp port=5432 sslmode=require TimeZone=America/Santiago search_path=travel"
