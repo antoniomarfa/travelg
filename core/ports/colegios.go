@@ -18,6 +18,6 @@ type ColegiosService interface {
 	Create(ctx context.Context, colegios models.CreateColegiosReq) (models.CreationResp, error)
 	GetAll(ctx context.Context) ([]models.ColegiosResp, error)
 	GetByID(ctx context.Context, ID string) (models.ColegiosResp, error)
-	Update(ctx context.Context, ID string, company models.UpdateColegiosReq) error
+	Update(ctx context.Context, ID string, colegios models.UpdateColegiosReq) error
 	Delete(ctx context.Context, ID string) error
 }
