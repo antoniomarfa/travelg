@@ -39,7 +39,7 @@ func (s *saleRepository) Create(ctx context.Context, sale interface{}) (string, 
 	err := s.DB.Table("sale").Model(&existingSale).Where("establecimiento_id = ?", u.EstablecimientoId).First(&existingSale).Error
 	if err == nil {
 		// Si no hay error, significa que se encontró un rol con ese nombre
-		return "error", errors.New("Hay una venta para este colegio, curso ")
+		return "error", errors.New("hay una venta para este colegio, curso ")
 	}
 	if !errors.Is(err, gorm.ErrRecordNotFound) {
 		// Si el error no es de registro no encontrado, es un error inesperado

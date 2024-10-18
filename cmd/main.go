@@ -4,12 +4,15 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 
 	"travel/app/api"
 	"travel/app/async"
 	"travel/config"
 
 	"github.com/hashicorp/go-multierror"
+	"github.com/joho/godotenv"
 )
 
 // @title Go Hexagonal API
@@ -31,45 +34,37 @@ func main() {
 		FlowApiurl    string `long:"flowapurl" description:"APIURL" required:"true"`
 		FLoWBaseurl   string `long:"flowbaseurl" description:"BASEURL" required:"true"`
 	}
-	/*
+	env := os.Getenv("ENVIRONMENT")
+
+	if env == "" {
 		err := godotenv.Load(".env")
 
 		if err != nil {
 			log.Fatal("Error loading .env file")
 		}
+	}
 
-		opts.Version = os.Getenv("VERSION")
-		opts.Environment = os.Getenv("ENVIRONMENT")
-		opts.Port, _ = strconv.Atoi(os.Getenv("PORT"))
-		opts.Database = os.Getenv("DATABASE")
-		opts.DSN = os.Getenv("DSN")
+	opts.Version = os.Getenv("VERSION")
+	opts.Environment = os.Getenv("ENVIRONMENT")
+	opts.Port, _ = strconv.Atoi(os.Getenv("PORT"))
+	opts.Database = os.Getenv("DATABASE")
+	opts.DSN = os.Getenv("DSN")
 
-		if opts.Environment == "local" {
-			opts.FlowApikey = os.Getenv("FLOW_DEV_APIKEY")
-			opts.FlowSecretkey = os.Getenv("FLOW_DEV_SECRETKEY")
-			opts.FlowApiurl = os.Getenv("FLOW_DEV_APIURL")
-			opts.FLoWBaseurl = os.Getenv("FLOW_DEV_BASEURL")
-
-		}
-
-		if opts.Environment == "dev" {
-			opts.FlowApikey = os.Getenv("FLOW_PRD_APIKEY")
-			opts.FlowSecretkey = os.Getenv("FLOW_PRD_SECRETKEY")
-			opts.FlowApiurl = os.Getenv("FLOW_PRD_APIURL")
-			opts.FLoWBaseurl = os.Getenv("FLOW_PRD_BASEURL")
-
-		}
+	opts.FlowApikey = os.Getenv("FLOW_APIKEY")
+	opts.FlowSecretkey = os.Getenv("FLOW_SECRETKEY")
+	opts.FlowApiurl = os.Getenv("FLOW_APIURL")
+	opts.FLoWBaseurl = os.Getenv("FLOW_BASEURL")
+	/*
+		opts.Version = "1.0"
+		opts.Environment = "dev"
+		opts.Port = 8080
+		opts.Database = "postgres"
+		opts.DSN = "host=ddpg-cruktnggph6c73akddl0-a.oregon-postgres.render.com user=amartinez password=25G0wtvk8ogwM2NTZLgAgHXup9opI831 dbname=travel_erp port=5432 sslmode=require TimeZone=America/Santiago search_path=travel"
+		opts.FlowApikey = "71FF6DFF-8E7B-45D6-90AF-329LB593BBC8"
+		opts.FlowSecretkey = "3bfa04d8a5e6242386e8a9dc676f7bbb9df72f35"
+		opts.FlowApiurl = "https://sandbox.flow.cl/api"
+		opts.FLoWBaseurl = "https://sandbox.flow.cl/api"
 	*/
-	opts.Version = "1.0"
-	opts.Environment = "dev"
-	opts.Port = 8080
-	opts.Database = "postgres"
-	opts.DSN = "host=ddpg-cruktnggph6c73akddl0-a.oregon-postgres.render.com user=amartinez password=25G0wtvk8ogwM2NTZLgAgHXup9opI831 dbname=travel_erp port=5432 sslmode=require TimeZone=America/Santiago search_path=travel"
-	opts.FlowApikey = "71FF6DFF-8E7B-45D6-90AF-329LB593BBC8"
-	opts.FlowSecretkey = "3bfa04d8a5e6242386e8a9dc676f7bbb9df72f35"
-	opts.FlowApiurl = "https://sandbox.flow.cl/api"
-	opts.FLoWBaseurl = "https://sandbox.flow.cl/api"
-
 	cfg, err := config.ReadConfig(opts.Version, opts.Environment, opts.Port, opts.Database, opts.DSN, opts.FlowApikey, opts.FlowSecretkey, opts.FlowApiurl, opts.FLoWBaseurl) // , "config")
 	if err != nil {
 		log.Fatal(fmt.Errorf("no se puede analizar el archivo de configuración ENV %s: %w", opts.Environment, err))

@@ -82,7 +82,19 @@ func getAllComunas(ctx context.Context, cfg config.Config, p ports.ComunasServic
 		ctx, cancel := context.WithTimeout(ctx, cfg.Timeout.Duration)
 		defer cancel()
 
-		comunas, err := p.GetAll(ctx)
+		// Captura el parámetro de la URL
+		regionsID := c.Query("regions_id")
+
+		// Crea un mapa de filtro basado en el parámetro
+		filter := make(map[string]interface{})
+		if regionsID != "" {
+			filter["regions_id"] = regionsID
+		}
+
+		// Llama al servicio con el filtro
+		comunas, err := p.GetAll(ctx, filter)
+
+		//		comunas, err := p.GetAll(ctx)
 		if err != nil {
 			utils.ResponseError(c.Writer, c.Request, nil, err)
 			return

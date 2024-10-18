@@ -45,9 +45,10 @@ func (p *comunasService) Create(ctx context.Context, comunas models.CreateComuna
 }
 
 // GetAll users
-func (p *comunasService) GetAll(ctx context.Context) (resp []models.ComunasResp, err error) {
+func (p *comunasService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.ComunasResp, err error) {
 	// Obtiene los roles desde el repositorio
-	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
+	result, err := p.repository.Get(ctx, filter, nil, nil)
+	//	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {
 		return nil, err
 	}
