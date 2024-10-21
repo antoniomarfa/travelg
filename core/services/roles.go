@@ -42,7 +42,7 @@ func (p *rolesService) Create(ctx context.Context, roles models.CreateRolesReq) 
 }
 
 // GetAll users
-func (p *rolesService) GetAll(ctx context.Context) (resp []models.RolesResp, err error) {
+func (p *rolesService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.RolesResp, err error) {
 	// Obtiene los roles desde el repositorio
 	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {

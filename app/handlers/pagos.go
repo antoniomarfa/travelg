@@ -82,7 +82,8 @@ func getAllPagos(ctx context.Context, cfg config.Config, p ports.PagosService) g
 		ctx, cancel := context.WithTimeout(ctx, cfg.Timeout.Duration)
 		defer cancel()
 
-		pagos, err := p.GetAll(ctx)
+		filter := make(map[string]interface{})
+		pagos, err := p.GetAll(ctx, filter)
 		if err != nil {
 			utils.ResponseError(c.Writer, c.Request, nil, err)
 			return

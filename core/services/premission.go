@@ -41,7 +41,7 @@ func (p *permissionService) Create(ctx context.Context, ermission models.CreateR
 }
 
 // GetAll users
-func (p *permissionService) GetAll(ctx context.Context) (resp []models.RolesPermissionsResp, err error) {
+func (p *permissionService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.RolesPermissionsResp, err error) {
 	// Obtiene los roles desde el repositorio
 	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {

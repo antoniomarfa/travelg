@@ -16,7 +16,7 @@ type CursoRepository interface {
 // SaleService interface
 type CursoService interface {
 	Create(ctx context.Context, curso models.CreateCursoReq) (models.CreationResp, error)
-	GetAll(ctx context.Context) ([]models.CursoResp, error)
+	GetAll(ctx context.Context, filter map[string]interface{}) ([]models.CursoResp, error)
 	GetByID(ctx context.Context, ID string) (models.CursoResp, error)
 	Update(ctx context.Context, ID string, curso models.UpdateCursoReq) error
 	Delete(ctx context.Context, ID string) error

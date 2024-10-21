@@ -82,7 +82,8 @@ func getAllFicha(ctx context.Context, cfg config.Config, p ports.FmedicaService)
 		ctx, cancel := context.WithTimeout(ctx, cfg.Timeout.Duration)
 		defer cancel()
 
-		ficha, err := p.GetAll(ctx)
+		filter := make(map[string]interface{})
+		ficha, err := p.GetAll(ctx, filter)
 		if err != nil {
 			utils.ResponseError(c.Writer, c.Request, nil, err)
 			return

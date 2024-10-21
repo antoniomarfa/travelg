@@ -82,7 +82,8 @@ func getAllRegion(ctx context.Context, cfg config.Config, p ports.RegionService)
 		ctx, cancel := context.WithTimeout(ctx, cfg.Timeout.Duration)
 		defer cancel()
 
-		region, err := p.GetAll(ctx)
+		filter := make(map[string]interface{})
+		region, err := p.GetAll(ctx, filter)
 		if err != nil {
 			utils.ResponseError(c.Writer, c.Request, nil, err)
 			return

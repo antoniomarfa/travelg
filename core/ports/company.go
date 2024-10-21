@@ -16,7 +16,7 @@ type CompanyRepository interface {
 // RolesService interface
 type CompanyService interface {
 	Create(ctx context.Context, company models.CreateCompanyReq) (models.CreationResp, error)
-	GetAll(ctx context.Context) ([]models.CompanyResp, error)
+	GetAll(ctx context.Context, filter map[string]interface{}) ([]models.CompanyResp, error)
 	GetByID(ctx context.Context, ID string) (models.CompanyResp, error)
 	Update(ctx context.Context, ID string, company models.UpdateCompanyReq) error
 	Delete(ctx context.Context, ID string) error

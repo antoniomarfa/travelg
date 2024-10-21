@@ -82,7 +82,8 @@ func getAllProgram(ctx context.Context, cfg config.Config, p ports.ProgramServic
 		ctx, cancel := context.WithTimeout(ctx, cfg.Timeout.Duration)
 		defer cancel()
 
-		program, err := p.GetAll(ctx)
+		filter := make(map[string]interface{})
+		program, err := p.GetAll(ctx, filter)
 		if err != nil {
 			utils.ResponseError(c.Writer, c.Request, nil, err)
 			return

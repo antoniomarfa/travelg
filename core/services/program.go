@@ -41,7 +41,7 @@ func (p *programService) Create(ctx context.Context, program models.CreateProgra
 }
 
 // GetAll users
-func (p *programService) GetAll(ctx context.Context) (resp []models.ProgramResp, err error) {
+func (p *programService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.ProgramResp, err error) {
 	// Obtiene los roles desde el repositorio
 	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {

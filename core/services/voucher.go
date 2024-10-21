@@ -41,7 +41,7 @@ func (p *voucherService) Create(ctx context.Context, voucher models.CreateVouche
 }
 
 // GetAll users
-func (p *voucherService) GetAll(ctx context.Context) (resp []models.VoucherResp, err error) {
+func (p *voucherService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.VoucherResp, err error) {
 	// Obtiene los roles desde el repositorio
 	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {

@@ -16,7 +16,7 @@ type ProgramRepository interface {
 // SaleService interface
 type ProgramService interface {
 	Create(ctx context.Context, program models.CreateProgramReq) (models.CreationResp, error)
-	GetAll(ctx context.Context) ([]models.ProgramResp, error)
+	GetAll(ctx context.Context, filter map[string]interface{}) ([]models.ProgramResp, error)
 	GetByID(ctx context.Context, ID string) (models.ProgramResp, error)
 	Update(ctx context.Context, ID string, program models.UpdateProgramReq) error
 	Delete(ctx context.Context, ID string) error

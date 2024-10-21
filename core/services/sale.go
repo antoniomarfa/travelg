@@ -41,7 +41,7 @@ func (p *saleService) Create(ctx context.Context, sale models.CreateSaleReq) (re
 }
 
 // GetAll users
-func (p *saleService) GetAll(ctx context.Context) (resp []models.SaleResp, err error) {
+func (p *saleService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.SaleResp, err error) {
 	// Obtiene los roles desde el repositorio
 	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {

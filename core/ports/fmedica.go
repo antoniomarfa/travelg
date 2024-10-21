@@ -16,7 +16,7 @@ type FmedicaRepository interface {
 // SaleService interface
 type FmedicaService interface {
 	Create(ctx context.Context, fmedica models.CreateFmedicaReq) (models.CreationResp, error)
-	GetAll(ctx context.Context) ([]models.FmedicaResp, error)
+	GetAll(ctx context.Context, filter map[string]interface{}) ([]models.FmedicaResp, error)
 	GetByID(ctx context.Context, ID string) (models.FmedicaResp, error)
 	Update(ctx context.Context, ID string, fmedica models.UpdateFmedicaReq) error
 	Delete(ctx context.Context, ID string) error

@@ -72,7 +72,7 @@ func (s *rolesRepository) Get(ctx context.Context, filter map[string]interface{}
 	}
 
 	// Ejecuta la consulta
-	if err := query.Table("roles").Find(&registro).Error; err != nil {
+	if err := query.Table("roles").Order("id asc").Find(&registro).Error; err != nil {
 		return nil, err
 	}
 

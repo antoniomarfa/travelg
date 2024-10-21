@@ -16,7 +16,7 @@ type IngresoRepository interface {
 // IngresoService interface
 type IngresoService interface {
 	Create(ctx context.Context, ingreso models.CreateIngresoReq) (models.CreationResp, error)
-	GetAll(ctx context.Context) ([]models.IngresoResp, error)
+	GetAll(ctx context.Context, filter map[string]interface{}) ([]models.IngresoResp, error)
 	GetByID(ctx context.Context, ID string) (models.IngresoResp, error)
 	Update(ctx context.Context, ID string, ingreso models.UpdateIngresoReq) error
 	Delete(ctx context.Context, ID string) error

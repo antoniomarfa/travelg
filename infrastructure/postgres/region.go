@@ -72,7 +72,7 @@ func (s *regionRepository) Get(ctx context.Context, filter map[string]interface{
 	}
 
 	// Ejecuta la consulta
-	if err := query.Table("region").Find(&registro).Error; err != nil {
+	if err := query.Table("region").Order("id asc").Find(&registro).Error; err != nil {
 		return nil, err
 	}
 

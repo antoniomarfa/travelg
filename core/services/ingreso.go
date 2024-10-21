@@ -45,7 +45,7 @@ func (p *ingresoService) Create(ctx context.Context, ingreso models.CreateIngres
 }
 
 // GetAll users
-func (p *ingresoService) GetAll(ctx context.Context) (resp []models.IngresoResp, err error) {
+func (p *ingresoService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.IngresoResp, err error) {
 	// Obtiene los roles desde el repositorio
 	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {

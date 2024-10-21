@@ -16,7 +16,7 @@ type PagosRepository interface {
 // RolesService interface
 type PagosService interface {
 	Create(ctx context.Context, pagos models.CreatePagosReq) (models.CreationResp, error)
-	GetAll(ctx context.Context) ([]models.PagosResp, error)
+	GetAll(ctx context.Context, filter map[string]interface{}) ([]models.PagosResp, error)
 	GetByID(ctx context.Context, ID string) (models.PagosResp, error)
 	Update(ctx context.Context, ID string, pagos models.UpdatePagosReq) error
 	Delete(ctx context.Context, ID string) error

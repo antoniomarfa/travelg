@@ -82,7 +82,8 @@ func getAllCurso(ctx context.Context, cfg config.Config, p ports.CursoService) g
 		ctx, cancel := context.WithTimeout(ctx, cfg.Timeout.Duration)
 		defer cancel()
 
-		curso, err := p.GetAll(ctx)
+		filter := make(map[string]interface{})
+		curso, err := p.GetAll(ctx, filter)
 		if err != nil {
 			utils.ResponseError(c.Writer, c.Request, nil, err)
 			return

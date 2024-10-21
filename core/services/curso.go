@@ -45,7 +45,7 @@ func (p *cursoService) Create(ctx context.Context, curso models.CreateCursoReq) 
 }
 
 // GetAll users
-func (p *cursoService) GetAll(ctx context.Context) (resp []models.CursoResp, err error) {
+func (p *cursoService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.CursoResp, err error) {
 	// Obtiene los roles desde el repositorio
 	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {

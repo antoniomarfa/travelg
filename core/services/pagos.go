@@ -45,7 +45,7 @@ func (p *pagosService) Create(ctx context.Context, pagos models.CreatePagosReq) 
 }
 
 // GetAll users
-func (p *pagosService) GetAll(ctx context.Context) (resp []models.PagosResp, err error) {
+func (p *pagosService) GetAll(ctx context.Context, filter map[string]interface{}) (resp []models.PagosResp, err error) {
 	// Obtiene los roles desde el repositorio
 	result, err := p.repository.Get(ctx, map[string]interface{}{}, nil, nil)
 	if err != nil {
