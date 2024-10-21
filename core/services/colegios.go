@@ -116,7 +116,7 @@ func (p *colegiosService) Update(ctx context.Context, ID string, colegios models
 		dbColegios.RegionId = *colegios.RegionId
 	}
 
-	if colegios.CompanyId != nil {
+	if colegios.ComunaId != nil {
 		dbColegios.ComunaId = *colegios.ComunaId
 	}
 
