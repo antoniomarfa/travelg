@@ -134,3 +134,22 @@ func (s *colegiosRepository) Delete(ctx context.Context, ID string) error {
 
 	return nil
 }
+
+func (s *permissionRepository) DeleteAll(ctx context.Context, ID string) error { /*
+
+		var permission models.CreateRolesPermissionsReq
+
+		result := s.DB.WithContext(ctx).Table("roles_permissions").Where("roles_id = ?", ID).Delete(&permission)
+
+		// Comprueba si ocurrió un error durante la eliminación
+		if result.Error != nil {
+			return wrappers.NewNonExistentErr(result.Error)
+		}
+
+		// Comprueba si se eliminaron filas
+		if result.RowsAffected == 0 {
+			return wrappers.NewNonExistentErr(sql.ErrNoRows) // Manejo de error si no se encontró el registro
+		}
+	*/
+	return nil
+}

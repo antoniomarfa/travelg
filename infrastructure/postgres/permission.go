@@ -120,7 +120,7 @@ func (s *permissionRepository) Update(ctx context.Context, ID string, permission
 func (s *permissionRepository) Delete(ctx context.Context, ID string) error {
 	var permission models.CreateRolesPermissionsReq
 
-	result := s.DB.WithContext(ctx).Table("roles_permissions").Where("id = ?", ID).Delete(&permission)
+	result := s.DB.WithContext(ctx).Table("roles_permissions").Where("roles_id = ?", ID).Delete(&permission)
 
 	// Comprueba si ocurrió un error durante la eliminación
 	if result.Error != nil {
