@@ -36,7 +36,7 @@ func (s *rolesRepository) Create(ctx context.Context, roles interface{}) (string
 
 	var existingReg = roles.(models.CreateRolesReq)
 
-	err := s.DB.Model(&existingReg).Where("description = ?", u.Description).First(&existingReg).Error
+	err := s.DB.Table("roles").Model(&existingReg).Where("description = ?", u.Description).First(&existingReg).Error
 	if err == nil {
 		// Si no hay error, significa que se encontró un rol con ese nombre
 		return "error", errors.New("El Role con la descripcion '" + u.Description + "' ya existe")
@@ -47,7 +47,7 @@ func (s *rolesRepository) Create(ctx context.Context, roles interface{}) (string
 	}
 
 	// Usamos el contexto y creamos el registro en la base de datos
-	if err := s.DB.WithContext(ctx).Create(&u).Error; err != nil {
+	if err := s.DB.WithContext(ctx).Table("roles").Create(&u).Error; err != nil {
 		return "", err
 	}
 

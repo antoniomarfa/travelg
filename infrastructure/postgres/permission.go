@@ -36,7 +36,7 @@ func (s *permissionRepository) Create(ctx context.Context, permission interface{
 
 	var existingReg = permission.(models.CreateRolesPermissionsReq)
 
-	err := s.DB.Model(&existingReg).Where("id = ?", u.ID).First(&existingReg).Error
+	err := s.DB.Table("roles_permissions").Model(&existingReg).Where("id = ?", u.ID).First(&existingReg).Error
 	if err == nil {
 		// Si no hay error, significa que se encontró un rol con ese nombre
 		return "error", errors.New("El Permission con el codigo '" + u.ID + "' ya existe")
@@ -47,7 +47,7 @@ func (s *permissionRepository) Create(ctx context.Context, permission interface{
 	}
 
 	// Usamos el contexto y creamos el registro en la base de datos
-	if err := s.DB.WithContext(ctx).Create(&u).Error; err != nil {
+	if err := s.DB.WithContext(ctx).Table("roles_permissions").Create(&u).Error; err != nil {
 		return "", err
 	}
 
