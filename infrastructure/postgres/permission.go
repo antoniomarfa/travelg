@@ -33,19 +33,19 @@ func (s *permissionRepository) Create(ctx context.Context, permission interface{
 
 	// Asegúrate de que el tipo del usuario es correcto
 	u := permission.(models.CreateRolesPermissionsReq)
+	/*
+		var existingReg = permission.(models.CreateRolesPermissionsReq)
 
-	var existingReg = permission.(models.CreateRolesPermissionsReq)
-
-	err := s.DB.Table("roles_permissions").Model(&existingReg).Where("id = ?", u.ID).First(&existingReg).Error
-	if err == nil {
-		// Si no hay error, significa que se encontró un rol con ese nombre
-		return "error", errors.New("El Permission con el codigo '" + u.ID + "' ya existe")
-	}
-	if !errors.Is(err, gorm.ErrRecordNotFound) {
-		// Si el error no es de registro no encontrado, es un error inesperado
-		return "error", errors.New("Error al buscar permission: " + err.Error())
-	}
-
+		err := s.DB.Table("roles_permissions").Model(&existingReg).Where("id = ?", u.ID).First(&existingReg).Error
+		if err == nil {
+			// Si no hay error, significa que se encontró un rol con ese nombre
+			return "error", errors.New("El Permission con el codigo '" + u.ID + "' ya existe")
+		}
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			// Si el error no es de registro no encontrado, es un error inesperado
+			return "error", errors.New("Error al buscar permission: " + err.Error())
+		}
+	*/
 	// Usamos el contexto y creamos el registro en la base de datos
 	if err := s.DB.WithContext(ctx).Table("roles_permissions").Create(&u).Error; err != nil {
 		return "", err
