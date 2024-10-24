@@ -59,7 +59,7 @@ func (s *permissionRepository) Get(ctx context.Context, filter map[string]interf
 	var registro []models.RolesPermissionsResp
 
 	// Crea una consulta base
-	query := s.DB.WithContext(ctx).Model(&models.ProgramResp{})
+	query := s.DB.WithContext(ctx).Model(&models.RolesPermissionsResp{})
 
 	// Aplica filtros si existen
 	for key, value := range filter {
