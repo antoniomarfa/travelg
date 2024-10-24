@@ -6,9 +6,6 @@ type RolesPermissions struct {
 	Permission string `json:"permission"`
 	Actions    string `json:"actions"`
 	CompanyId  int64  `json:"company_id"`
-
-	// Relación con la estructura Roles
-	Role Roles `gorm:"foreignKey:RolesId;references:ID"`
 }
 
 // Resp  response struct
@@ -18,9 +15,6 @@ type RolesPermissionsResp struct {
 	Permission string `json:"permission"`
 	Actions    string `json:"actions"`
 	CompanyId  int64  `json:"company_id"`
-
-	// Relación con la estructura Roles
-	Role Roles `gorm:"foreignKey:RolesId;references:ID"`
 }
 
 // Create---Req  request struct

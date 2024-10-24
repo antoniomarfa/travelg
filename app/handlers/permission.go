@@ -82,7 +82,13 @@ func getAllPermission(ctx context.Context, cfg config.Config, p ports.Permission
 		ctx, cancel := context.WithTimeout(ctx, cfg.Timeout.Duration)
 		defer cancel()
 
+		// Captura el parámetro de la URL
+		rolesID := c.Query("roles_id")
+
 		filter := make(map[string]interface{})
+		if rolesID != "" {
+			filter["roles_id"] = rolesID
+		}
 		permission, err := p.GetAll(ctx, filter)
 		if err != nil {
 			utils.ResponseError(c.Writer, c.Request, nil, err)
