@@ -36,7 +36,7 @@ func main() {
 	}
 	env := os.Getenv("ENVIRONMENT")
 
-	if env == "local" {
+	if env == "" {
 		err := godotenv.Load(".env")
 
 		if err != nil {

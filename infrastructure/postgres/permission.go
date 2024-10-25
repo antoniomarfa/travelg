@@ -56,7 +56,7 @@ func (s *permissionRepository) Create(ctx context.Context, permission interface{
 }
 
 func (s *permissionRepository) Get(ctx context.Context, filter map[string]interface{}, skip, take *int) ([]interface{}, error) {
-	var registro []models.RolesPermissionsResp
+	var registro []models.RolesPermissionResp
 
 	// Crea una consulta base
 	query := s.DB.WithContext(ctx).Model(&models.RolesPermissionsResp{})
@@ -72,7 +72,7 @@ func (s *permissionRepository) Get(ctx context.Context, filter map[string]interf
 	}
 
 	// Ejecuta la consulta
-	if err := query.Preload("Role").Table("roles_permissions").Find(&registro).Error; err != nil {
+	if err := query.Table("roles_permissions").Find(&registro).Error; err != nil {
 		return nil, err
 	}
 
