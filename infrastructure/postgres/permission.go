@@ -56,7 +56,7 @@ func (s *permissionRepository) Create(ctx context.Context, permission interface{
 }
 
 func (s *permissionRepository) Get(ctx context.Context, filter map[string]interface{}, skip, take *int) ([]interface{}, error) {
-	var registro []models.RolesPermissionResp
+	var registro []models.RolesPermissionsResp
 
 	// Crea una consulta base
 	query := s.DB.WithContext(ctx).Model(&models.RolesPermissionsResp{})
